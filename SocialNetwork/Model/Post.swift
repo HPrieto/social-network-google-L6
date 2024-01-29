@@ -5,8 +5,8 @@
 //  Created by Sergey Leschev on 25/12/22.
 //
 
-import FirebaseFirestoreSwift
 import Firebase
+import FirebaseFirestore
 
 struct Post: Identifiable, Decodable {
     @DocumentID var id: String?

@@ -38,7 +38,6 @@
 		945C4BFC2814269100BA3309 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 945C4BFB2814269100BA3309 /* GoogleService-Info.plist */; };
 		945C4BFF2814289100BA3309 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 945C4BFE2814289100BA3309 /* FirebaseAuth */; };
 		945C4C012814289100BA3309 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 945C4C002814289100BA3309 /* FirebaseFirestore */; };
-		945C4C032814289100BA3309 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 945C4C022814289100BA3309 /* FirebaseFirestoreSwift-Beta */; };
 		945C4C052814289100BA3309 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 945C4C042814289100BA3309 /* FirebaseStorage */; };
 		945F6765281321F400D7B145 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F6764281321F400D7B145 /* LoginView.swift */; };
 		9463EC662815C371004934F1 /* ExploreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9463EC652815C371004934F1 /* ExploreViewModel.swift */; };
@@ -52,6 +51,7 @@
 		94C3E08528143BD20095C36A /* ProfilePhotoSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C3E08428143BD20095C36A /* ProfilePhotoSelectorView.swift */; };
 		94C3E088281442160095C36A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C3E087281442160095C36A /* ImagePicker.swift */; };
 		94C3E08A281452690095C36A /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C3E089281452690095C36A /* ImageUploader.swift */; };
+		C778E8102B5D993F00A6A3A3 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C778E80F2B5D993F00A6A3A3 /* ResetPasswordView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +98,7 @@
 		94C3E08428143BD20095C36A /* ProfilePhotoSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoSelectorView.swift; sourceTree = "<group>"; };
 		94C3E087281442160095C36A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		94C3E089281452690095C36A /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
+		C778E80F2B5D993F00A6A3A3 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +107,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				945A85B628157D5700FFF6EA /* Kingfisher in Frameworks */,
-				945C4C032814289100BA3309 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				945C4BFF2814289100BA3309 /* FirebaseAuth in Frameworks */,
 				945C4C052814289100BA3309 /* FirebaseStorage in Frameworks */,
 				945C4C012814289100BA3309 /* FirebaseFirestore in Frameworks */,
@@ -401,6 +401,7 @@
 				945F6764281321F400D7B145 /* LoginView.swift */,
 				945C4BF42813E4A600BA3309 /* RegistrationView.swift */,
 				94C3E08428143BD20095C36A /* ProfilePhotoSelectorView.swift */,
+				C778E80F2B5D993F00A6A3A3 /* ResetPasswordView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -472,7 +473,6 @@
 			packageProductDependencies = (
 				945C4BFE2814289100BA3309 /* FirebaseAuth */,
 				945C4C002814289100BA3309 /* FirebaseFirestore */,
-				945C4C022814289100BA3309 /* FirebaseFirestoreSwift-Beta */,
 				945C4C042814289100BA3309 /* FirebaseStorage */,
 				945A85B528157D5700FFF6EA /* Kingfisher */,
 			);
@@ -568,6 +568,7 @@
 				941CCE702812E44900B5F690 /* SideMenuOptionRowView.swift in Sources */,
 				949E3C002816810300C8FD38 /* ProfileViewModel.swift in Sources */,
 				941CCE4D28116A5C00B5F690 /* MainTabView.swift in Sources */,
+				C778E8102B5D993F00A6A3A3 /* ResetPasswordView.swift in Sources */,
 				949E3BFE2816783E00C8FD38 /* Post.swift in Sources */,
 				941CCE5528116DFB00B5F690 /* NotificationsView.swift in Sources */,
 				941CCE6E281277DF00B5F690 /* UserStatsView.swift in Sources */,
@@ -702,20 +703,21 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SocialNetwork/Preview Content\"";
-				DEVELOPMENT_TEAM = 5Q4J73RU3K;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SocialNetwork/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Social;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sergeyleschev.SocialNetwork;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hprieto.SocialNetwork;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -731,20 +733,21 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SocialNetwork/Preview Content\"";
-				DEVELOPMENT_TEAM = 5Q4J73RU3K;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SocialNetwork/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Social;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sergeyleschev.SocialNetwork;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hprieto.SocialNetwork;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -789,7 +792,7 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 8.0.0;
+				minimumVersion = 10.20.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -809,11 +812,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 945C4BFD2814289000BA3309 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
-		};
-		945C4C022814289100BA3309 /* FirebaseFirestoreSwift-Beta */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 945C4BFD2814289000BA3309 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = "FirebaseFirestoreSwift-Beta";
 		};
 		945C4C042814289100BA3309 /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;

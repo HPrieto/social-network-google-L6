@@ -22,31 +22,27 @@ struct RegistrationView: View {
                            isActive: $viewModel.didAuthenticateUser,
                            label: { })
             
-            AuthHeaderView(title1: "Get started,", title2: "Create your account")
+            AuthHeaderView(title1: "Sign up", title2: "Create a profile, follow other accounts, make our own videos, and more.")
             
             VStack(spacing: 40) {
-                CustomInputField(imageName: "envelope",
-                                 placeholderText: "Email",
+                CustomInputField(placeholderText: "Email",
                                  textCase: .lowercase,
                                  keyboardType: .emailAddress,
                                  textContentType: .emailAddress,
                                  text: $email)
                 
-                CustomInputField(imageName: "person",
-                                 placeholderText: "Username",
+                CustomInputField(placeholderText: "Username",
                                  textCase: .lowercase,
                                  keyboardType: .default,
                                  textContentType: .username,
                                  text: $username)
                 
-                CustomInputField(imageName: "person",
-                                 placeholderText: "Full name",
+                CustomInputField(placeholderText: "Full name",
                                  textContentType: .name,
                                  textInputAutoCapital: .words,
                                  text: $fullname)
                 
-                CustomInputField(imageName: "lock",
-                                 placeholderText: "Password",
+                CustomInputField(placeholderText: "Password",
                                  textContentType: .newPassword,
                                  isSecureField: true,
                                  text: $password)
@@ -65,7 +61,7 @@ struct RegistrationView: View {
                     .foregroundColor(.white)
                     .frame(width: 340, height: 50)
                     .background(Color.themeColor)
-                    .clipShape(Capsule())
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
                     .padding()
             }
             .shadow(color: .gray.opacity(0.5), radius: 10, x: 0, y: 0)
@@ -80,7 +76,7 @@ struct RegistrationView: View {
                     Text("Already have an account?")
                         .font(.footnote)
                     
-                    Text("Sign In")
+                    Text("Log In")
                         .font(.footnote)
                         .fontWeight(.semibold)
                 }

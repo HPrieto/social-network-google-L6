@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CustomInputField: View {
-    let imageName: String
     let placeholderText: String
     var textCase: Text.Case?
     var keyboardType: UIKeyboardType?
@@ -20,11 +19,6 @@ struct CustomInputField: View {
     var body: some View {
         VStack {
             HStack {
-                Image(systemName: imageName)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                    .foregroundColor(Color(.darkGray))
                 
                 if isSecureField ?? false {
                     SecureField(placeholderText, text: $text)
@@ -51,8 +45,9 @@ struct CustomInputField: View {
 
 struct CustomInputField_Previews: PreviewProvider {
     static var previews: some View {
-        CustomInputField(imageName: "envelope", placeholderText: "Email", isSecureField: false, text: .constant(""))
+        CustomInputField(placeholderText: "Email", isSecureField: false, text: .constant(""))
     }
+    
 }
 
 extension CustomInputField {

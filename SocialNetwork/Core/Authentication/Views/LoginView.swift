@@ -15,19 +15,17 @@ struct LoginView: View {
     var body: some View {
         VStack {
            //header here
-            AuthHeaderView(title1: "Hello,", title2: "Welcome back")
+            AuthHeaderView(title1: "Login", title2: "Manage your account, check notifications, comment on posts and more.")
             
             VStack(spacing: 40) {
-                CustomInputField(imageName: "envelope",
-                                 placeholderText: "Email",
+                CustomInputField(placeholderText: "Email",
                                  textCase: .lowercase,
                                  keyboardType: .emailAddress,
                                  textContentType: .emailAddress,
                                  text: $email)
                 
                 
-                CustomInputField(imageName: "lock",
-                                 placeholderText: "Password",
+                CustomInputField(placeholderText: "Password",
                                  textCase: .lowercase,
                                  keyboardType: .default,
                                  textContentType: .password,
@@ -35,33 +33,35 @@ struct LoginView: View {
                                  text: $password)
             }
             .padding(.horizontal, 32)
-            .padding(.top, 44)
+            .padding(.top, 16)
             
             HStack {
-                Spacer()
-                
                 NavigationLink {
-                    Text("Reset View")
+                    ResetPasswordView()
+                        .navigationBarHidden(false)
+                        .navigationBarBackButtonHidden(false)
                 } label: {
                     Text("Forgot Password?")
                         .font(.caption)
                         .fontWeight(.semibold)
                         .foregroundColor(Color.themeColor)
                         .padding(.top)
-                        .padding(.trailing, 24)
+                        .padding(.leading, 32)
                 }
+                
+                Spacer()
             }
             
             Button {
-                print("Sign In")
+                print("Log In")
                 viewModel.login(withEmail: email, password: password)
             } label: {
-                Text("Sign In")
+                Text("Log In")
                     .font(.headline)
                     .foregroundColor(.white)
                     .frame(width: 340, height: 50)
                     .background(Color.themeColor)
-                    .clipShape(Capsule())
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
                     .padding()
             }
             .shadow(color: .gray.opacity(0.5), radius: 10, x: 0, y: 0)
@@ -70,7 +70,9 @@ struct LoginView: View {
             
             NavigationLink  {
                 RegistrationView()
-                    .navigationBarHidden(true)
+                    .navigationBarHidden(false)
+                    .navigationBarBackButtonHidden(false) // Hides the default back button
+
             } label: {
                 HStack {
                     Text("Don't have an account?")

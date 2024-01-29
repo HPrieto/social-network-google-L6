@@ -12,22 +12,28 @@ struct AuthHeaderView: View {
     let title2: String
     
     var body: some View {
-        VStack(alignment: .center) {
-            HStack { Spacer()}
+        HStack {
+            VStack(alignment: .leading) {
+                
+                Text(title1)
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .padding(.bottom, 1)
+                
+                Text(title2)
+                    .font(.subheadline)
+                    .fontWeight(.regular)
+                    .foregroundColor(.gray)
+            }
+            .padding(.leading)
+            .foregroundColor(.black)
+            // .clipShape(RoundedShape(corners: [.bottomLeft, .bottomRight]))
             
-            Text(title1)
-                .font(.largeTitle)
-                .fontWeight(.semibold)
-            
-            Text(title2)
-                .font(.largeTitle)
-                .fontWeight(.semibold)
+            Spacer()
         }
-        .frame(height: 260)
         .padding(.leading)
-        .background(Color.themeColor)
-        .foregroundColor(.white)
-        .clipShape(RoundedShape(corners: [.bottomLeft, .bottomRight]))
+        .padding(.top, 128)
+        
     }
 }
 

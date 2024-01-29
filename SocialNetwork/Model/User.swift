@@ -5,7 +5,7 @@
 //  Created by Sergey Leschev on 24/12/22.
 //
 
-import FirebaseFirestoreSwift
+import FirebaseFirestore
 import Firebase
 
 struct User: Identifiable, Decodable {
