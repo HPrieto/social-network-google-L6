@@ -1,5 +1,5 @@
 //
-//  RegistrationView.swift
+//  SignupView.swift
 //  SocialNetwork
 //
 //  Created by Sergey Leschev on 23/12/22.
@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct RegistrationView: View {
+struct SignupView: View {
+    var birthday: Date
     @State private var email = ""
     @State private var username = ""
     @State private var fullname = ""
@@ -54,7 +55,9 @@ struct RegistrationView: View {
                 viewModel.register(withEmail: email,
                                    password: password,
                                    fullname: fullname,
-                                   username: username)
+                                   username: username,
+                                   birthday: birthday
+                )
             } label: {
                 Text("Sign Up")
                     .font(.headline)
@@ -68,28 +71,14 @@ struct RegistrationView: View {
             
             
             Spacer()
-            
-            Button {
-                presentationMode.wrappedValue.dismiss()
-            } label: {
-                HStack {
-                    Text("Already have an account?")
-                        .font(.footnote)
-                    
-                    Text("Log In")
-                        .font(.footnote)
-                        .fontWeight(.semibold)
-                }
-            }
-            .padding(.bottom, 32)
 
         }
         .ignoresSafeArea()
     }
 }
 
-struct RegistrationView_Previews: PreviewProvider {
+struct SignupViewView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationView()
+        SignupView(birthday: Date())
     }
 }

@@ -14,8 +14,8 @@ struct ContentView: View {
     
     var body: some View {
         Group {
-            if viewModel.userSession == nil {
-                LoginView() 
+            if viewModel.userSession != nil {
+                LoginView()
             } else {
                 mainInterfaceView
             }
@@ -54,8 +54,6 @@ extension ContentView {
                 .offset(x: showMenu ? 0 : -300, y: 0)
                 .background(showMenu ? Color.white : Color.clear)
         }
-        .navigationTitle("Home")
-        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 if let user = viewModel.currentUser {

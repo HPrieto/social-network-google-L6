@@ -37,7 +37,7 @@ struct LoginView: View {
             
             HStack {
                 NavigationLink {
-                    ResetPasswordView()
+                    ForgotPasswordView()
                         .navigationBarHidden(false)
                         .navigationBarBackButtonHidden(false)
                 } label: {
@@ -69,10 +69,9 @@ struct LoginView: View {
             Spacer()
             
             NavigationLink  {
-                RegistrationView()
+                SignupBirthdayView()
                     .navigationBarHidden(false)
                     .navigationBarBackButtonHidden(false) // Hides the default back button
-
             } label: {
                 HStack {
                     Text("Don't have an account?")

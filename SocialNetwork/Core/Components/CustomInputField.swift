@@ -18,6 +18,8 @@ struct CustomInputField: View {
     
     var body: some View {
         VStack {
+            Spacer()
+            
             HStack {
                 
                 if isSecureField ?? false {
@@ -37,9 +39,12 @@ struct CustomInputField: View {
                 }
             }
             
+            Spacer()
+            
             Divider()
                 .background(Color(.darkGray))
         }
+        .frame(height: 48)
     }
 }
 

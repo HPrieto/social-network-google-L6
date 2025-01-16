@@ -1,5 +1,5 @@
 //
-//  ResetPasswordView.swift
+//  ForgotPasswordView.swift
 //  SocialNetwork
 //
 //  Created by Heriberto Prieto (Personal) on 1/21/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ResetPasswordView: View {
+struct ForgotPasswordView: View {
     @State private var email: String = ""
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var viewModel: AuthViewModel
@@ -48,6 +48,6 @@ struct ResetPasswordView: View {
 
 struct ResetPasswordView_Previews: PreviewProvider {
     static var previews: some View {
-        ResetPasswordView()
+        ForgotPasswordView()
     }
 }

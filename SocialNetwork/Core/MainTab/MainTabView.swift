@@ -33,16 +33,20 @@ struct MainTabView: View {
                     self.selectedIndex = 2
                 }
                 .tabItem {
-                    Image(systemName: "bell")
+                    Image(systemName: "heart")
                 }.tag(2)
             
-            MessagesView()
-                .onTapGesture {
-                    self.selectedIndex = 3
-                }
-                .tabItem {
-                    Image(systemName: "envelope")
-                }.tag(3)
+            ProfileView(user: User(id: NSUUID().uuidString,
+               username: "HPrietoDev",
+               fullname: "Heriberto Prieto",
+               profileImageUrl: "",
+               email: "sergey.developer@gmail.com"))
+            .onTapGesture {
+                self.selectedIndex = 3
+            }
+            .tabItem {
+                Image(systemName: "person.crop.circle")
+            }.tag(3)
                 
         } 
     }
