@@ -40,7 +40,7 @@ struct UserRowView_Previews: PreviewProvider {
         UserRowView(user: User(id: NSUUID().uuidString,
                                username: "sergeydeveloper",
                                fullname: "Sergey Developer",
-                               profileImageUrl: "",
+                               birthday: Date(),
                                email: "sergey.developer@gmail.com"))
     }
 }

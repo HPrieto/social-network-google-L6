@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainTabView: View {
     @State private var selectedIndex = 0
+    @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
         TabView(selection: $selectedIndex) {
@@ -35,20 +36,31 @@ struct MainTabView: View {
                 .tabItem {
                     Image(systemName: "heart")
                 }.tag(2)
-            
-            ProfileView(user: User(id: NSUUID().uuidString,
-               username: "HPrietoDev",
-               fullname: "Heriberto Prieto",
-               profileImageUrl: "",
-               email: "sergey.developer@gmail.com"))
-            .onTapGesture {
-                self.selectedIndex = 3
+            if let currentUser = viewModel.currentUser {
+                ProfileView(user: currentUser)
+                .onTapGesture {
+                    self.selectedIndex = 3
+                }
+                .tabItem {
+                    Image(systemName: "person.crop.circle")
+                }.tag(3)
+            } else {
+                ProfileView(user:
+                    User(
+                        username: "User",
+                        fullname: "Default User",
+                        birthday: Date(),
+                        email: "user@email.com"
+                    )
+                )
+                .onTapGesture {
+                    self.selectedIndex = 3
+                }
+                .tabItem {
+                    Image(systemName: "person.crop.circle")
+                }.tag(3)
             }
-            .tabItem {
-                Image(systemName: "person.crop.circle")
-            }.tag(3)
-                
-        } 
+        }
     }
 }
 

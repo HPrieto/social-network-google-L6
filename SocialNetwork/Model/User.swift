@@ -12,8 +12,11 @@ struct User: Identifiable, Decodable {
     @DocumentID var id: String?
     let username: String
     let fullname: String
-    let profileImageUrl: String?
+    let birthday: Date
     let email: String
+    var profileImageUrl: String?
+    var profileDescription: String?
+    var phoneNumber: String?
 }
 
 extension User {

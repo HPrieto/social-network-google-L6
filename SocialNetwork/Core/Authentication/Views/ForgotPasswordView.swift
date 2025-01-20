@@ -26,7 +26,13 @@ struct ForgotPasswordView: View {
             .padding(32)
             
             Button {
-                print("Reset Password")
+                viewModel.resetPassword { error in
+                    if error == nil {
+                        Text("Email confirmation has been sent.")
+                    } else {
+                        Text("An error occured, please try again.")
+                    }
+                }
                 
             } label: {
                 Text("Reset")

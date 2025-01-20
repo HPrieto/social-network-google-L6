@@ -50,7 +50,6 @@ struct ProfileView: View {
             
             Spacer()
         }
-        .navigationBarHidden(true)
     }
 }
 
@@ -59,8 +58,9 @@ struct ProfileView_Previews: PreviewProvider {
         ProfileView(user: User(id: NSUUID().uuidString,
                                username: "HPrietoDev",
                                fullname: "Heriberto Prieto",
-                               profileImageUrl: "",
-                               email: "sergey.developer@gmail.com"))
+                               birthday: Date(),
+                               email: "sergey.developer@gmail.com",
+                               profileImageUrl: ""))
     }
 }
 
@@ -184,7 +184,7 @@ extension ProfileView {
             Text("\(viewModel.user.fullname)")
                 .fontWeight(.semibold)
             
-            Text("Digital goodies designer \nEverything is designed")
+            Text("Test description \nTest description line 2.")
                 .font(.system(size: 16, weight: .regular))
         }
         .padding(.horizontal)

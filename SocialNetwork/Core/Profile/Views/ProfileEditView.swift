@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct ProfileEditView: View {
-    @State private var name = ""
-    @State private var username = ""
-    @State private var birthday: Date?
-    @State private var bio = ""
-    @State private var email = ""
-    @State private var phone = ""
-    @State private var gender = ""
+    @State private var fullname: String = ""
+    @State private var username: String = ""
+    @State private var birthday: Date
+    @State private var birthdayText: String
+    @State private var profileDescription: String = ""
+    @State private var email: String
+    @State private var phoneNumber: String = ""
+    @State private var gender: String = ""
     
     @ObservedObject var viewModel: ProfileViewModel
     @Environment(\.presentationMode) var mode
@@ -22,19 +23,20 @@ struct ProfileEditView: View {
     
     init(user: User) {
         self.viewModel = ProfileViewModel(user: user)
-        self.name = user.fullname
+        self.fullname = user.fullname
         self.username = user.username
-        // self.birthday = user.birthday
-        // self.bio = user.bio
+        self.birthday = user.birthday
+        self.profileDescription = user.profileDescription ?? ""
         self.email = user.email
-        // self.phone = user.phone
-        // self.gender = user.gender
+        self.phoneNumber = user.phoneNumber ?? ""
+        self.birthday = user.birthday
+        self.birthdayText = user.birthday.formattedToMMDDYYYY
     }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             
-            headerView
+            // headerView
             
             profilePhotoView
             
@@ -48,17 +50,64 @@ struct ProfileEditView: View {
             
             Spacer()
         }
-        .navigationBarHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    mode.wrappedValue.dismiss()
+                } label: {
+                    Image(systemName: "arrow.left")
+                        .resizable()
+                        .frame(width: 21, height: 18)
+                        .foregroundColor(.black)
+                }
+            }
+            
+            ToolbarItem(placement: .principal) {
+                Text("Edit Profile")
+                    .font(.system(size: 18, weight: .semibold))
+            }
+            
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    
+                    mode.wrappedValue.dismiss()
+                } label: {
+                    Text("Done")
+                        .fontWeight(.medium)
+                }
+            }
+        }
+    }
+    
+    func saveData() {
+        let currentUser = self.viewModel.user
+        var fieldsToUpdate: [String: Any] = [:]
+        
+        if fullname != currentUser.fullname {
+            fieldsToUpdate["fullname"] = fullname
+        }
+        
+        if profileDescription != currentUser.profileDescription {
+            fieldsToUpdate["profileDescription"] = profileDescription
+        }
+        
+        if phoneNumber != currentUser.phoneNumber {
+            fieldsToUpdate["phoneNumber"]
+        }
+        
+        
     }
 }
 
 struct ProfileEditView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileEditView(user: User(id: NSUUID().uuidString,
-                               username: "sergeydeveloper",
-                               fullname: "Sergey Developer",
-                               profileImageUrl: "",
-                               email: "sergey.developer@gmail.com"))
+        ProfileEditView(user:
+                            User(
+                                id: NSUUID().uuidString,
+                                username: "sergeydeveloper",
+                                fullname: "Sergey Developer",
+                                birthday: Date(),
+                                email: "sergey.developer@gmail.com"))
     }
 }
 
@@ -130,7 +179,8 @@ extension ProfileEditView {
                     .font(.system(size: 15))
                     .frame(width: 100, alignment: .leading)
                 
-                CustomInputField(placeholderText: "Name", text: $name)
+                CustomInputField(placeholderText: "Name", text: $fullname)
+                    .keyboardType(.default)
             }
             
             HStack {
@@ -139,6 +189,7 @@ extension ProfileEditView {
                     .frame(width: 100, alignment: .leading)
                 
                 CustomInputField(placeholderText: "Username", text: $username)
+                    .keyboardType(.default)
             }
             
             HStack {
@@ -146,7 +197,7 @@ extension ProfileEditView {
                     .font(.system(size: 15))
                     .frame(width: 100, alignment: .leading)
                 
-                CustomInputField(placeholderText: "Birthday", text: $username)
+                CustomInputField(placeholderText: "Birthday", text: $birthdayText)
             }
             
             HStack {
@@ -154,7 +205,8 @@ extension ProfileEditView {
                     .font(.system(size: 15))
                     .frame(width: 100, alignment: .leading)
                 
-                CustomInputField(placeholderText: "Bio", text: $bio)
+                CustomInputField(placeholderText: "Bio", text: $profileDescription)
+                    .keyboardType(.default)
             }
             
         }
@@ -174,6 +226,7 @@ extension ProfileEditView {
                     .frame(width: 100, alignment: .leading)
                 
                 CustomInputField(placeholderText: "Email", text: $email)
+                    .keyboardType(.emailAddress)
             }
             
             HStack {
@@ -181,7 +234,8 @@ extension ProfileEditView {
                     .font(.system(size: 15))
                     .frame(width: 100, alignment: .leading)
                 
-                CustomInputField(placeholderText: "Phone", text: $phone)
+                CustomInputField(placeholderText: "Phone", text: $phoneNumber)
+                    .keyboardType(.phonePad)
             }
             
             HStack {
@@ -190,9 +244,19 @@ extension ProfileEditView {
                     .frame(width: 100, alignment: .leading)
                 
                 CustomInputField(placeholderText: "Gender", text: $gender)
+                    .keyboardType(.default)
             }
             
         }
         .padding(.horizontal)
+    }
+}
+
+extension Date {
+    
+    var formattedToMMDDYYYY: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy" // Specify the format you want
+        return dateFormatter.string(from: self) // Convert the date to a string
     }
 }
