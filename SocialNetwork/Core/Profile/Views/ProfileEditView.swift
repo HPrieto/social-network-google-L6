@@ -36,8 +36,6 @@ struct ProfileEditView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             
-            // headerView
-            
             profilePhotoView
             
             Divider()
@@ -63,13 +61,18 @@ struct ProfileEditView: View {
             }
             
             ToolbarItem(placement: .principal) {
+                
                 Text("Edit Profile")
                     .font(.system(size: 18, weight: .semibold))
             }
             
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    
+                    self.viewModel.updateCurrentUser(
+                        fullname: self.fullname,
+                        profileDescription: self.profileDescription,
+                        phoneNumber: self.phoneNumber,
+                        birthday: self.birthday)
                     mode.wrappedValue.dismiss()
                 } label: {
                     Text("Done")
@@ -77,71 +80,20 @@ struct ProfileEditView: View {
                 }
             }
         }
-    }
-    
-    func saveData() {
-        let currentUser = self.viewModel.user
-        var fieldsToUpdate: [String: Any] = [:]
         
-        if fullname != currentUser.fullname {
-            fieldsToUpdate["fullname"] = fullname
-        }
-        
-        if profileDescription != currentUser.profileDescription {
-            fieldsToUpdate["profileDescription"] = profileDescription
-        }
-        
-        if phoneNumber != currentUser.phoneNumber {
-            fieldsToUpdate["phoneNumber"]
-        }
-        
-        
+        .navigationBarBackButtonHidden(true)
     }
 }
 
 struct ProfileEditView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileEditView(user:
-                            User(
-                                id: NSUUID().uuidString,
-                                username: "sergeydeveloper",
-                                fullname: "Sergey Developer",
-                                birthday: Date(),
-                                email: "sergey.developer@gmail.com"))
+                            User(id: NSUUID().uuidString, username: "sergeydeveloper", fullname: "Sergey Developer", birthday: Date(),email: "sergey.developer@gmail.com")
+        )
     }
 }
 
 extension ProfileEditView {
-    
-    var headerView: some View {
-        HStack(alignment: .center, spacing: 12) {
-            
-            Button {
-                mode.wrappedValue.dismiss()
-            } label: {
-                Image(systemName: "arrow.left")
-                    .resizable()
-                    .frame(width: 21, height: 18)
-                    .foregroundColor(.black)
-            }
-            .padding(.trailing)
-            
-            Spacer()
-            
-            Text("Edit Profile")
-                .font(.system(size: 18, weight: .semibold))
-            
-            Spacer()
-            
-            Button {
-                mode.wrappedValue.dismiss()
-            } label: {
-                Text("Done")
-                    .fontWeight(.medium)
-            }
-        }
-        .padding(.horizontal)
-    }
     
     var profilePhotoView: some View {
         HStack {
@@ -180,7 +132,6 @@ extension ProfileEditView {
                     .frame(width: 100, alignment: .leading)
                 
                 CustomInputField(placeholderText: "Name", text: $fullname)
-                    .keyboardType(.default)
             }
             
             HStack {
@@ -189,24 +140,51 @@ extension ProfileEditView {
                     .frame(width: 100, alignment: .leading)
                 
                 CustomInputField(placeholderText: "Username", text: $username)
-                    .keyboardType(.default)
+                    .disabled(true)
             }
             
-            HStack {
-                Text("Birthday")
-                    .font(.system(size: 15))
-                    .frame(width: 100, alignment: .leading)
-                
-                CustomInputField(placeholderText: "Birthday", text: $birthdayText)
+            NavigationLink {
+                VStack {
+                    DatePicker(
+                        "Birthday",
+                        selection: $birthday,
+                        in: ...Date(),
+                        displayedComponents: [.date]
+                    )
+                    .datePickerStyle(.wheel)
+                    .labelsHidden()
+                    .onChange(of: birthday) { newValue in
+                        self.birthdayText = self.birthday.formattedToMMDDYYYY
+                    }
+                }
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        Text("Birthday")
+                            .font(.system(size: 18, weight: .semibold))
+                    }
+                }
+            } label: {
+                HStack {
+                    Text("Birthday")
+                        .font(.system(size: 15))
+                        .frame(width: 100, alignment: .leading)
+                        .foregroundStyle(Color.black)
+                    
+                    CustomInputField(placeholderText: "", text: $birthdayText)
+                }
             }
             
-            HStack {
-                Text("Bio")
-                    .font(.system(size: 15))
-                    .frame(width: 100, alignment: .leading)
-                
-                CustomInputField(placeholderText: "Bio", text: $profileDescription)
-                    .keyboardType(.default)
+            NavigationLink {
+                ProfileEditBioView(bio: $profileDescription)
+            } label: {
+                HStack {
+                    Text("Bio")
+                        .font(.system(size: 15))
+                        .frame(width: 100, alignment: .leading)
+                        .foregroundColor(.black)
+                    
+                    CustomInputField(placeholderText: "Bio", isNavigationField: true, text: $profileDescription)
+                }
             }
             
         }
@@ -226,7 +204,7 @@ extension ProfileEditView {
                     .frame(width: 100, alignment: .leading)
                 
                 CustomInputField(placeholderText: "Email", text: $email)
-                    .keyboardType(.emailAddress)
+                    .disabled(true)
             }
             
             HStack {
@@ -234,8 +212,8 @@ extension ProfileEditView {
                     .font(.system(size: 15))
                     .frame(width: 100, alignment: .leading)
                 
-                CustomInputField(placeholderText: "Phone", text: $phoneNumber)
-                    .keyboardType(.phonePad)
+                CustomInputField(placeholderText: "(XXX) XXX-XXXX", keyboardType: .phonePad, text: $phoneNumber)
+                    
             }
             
             HStack {
@@ -244,7 +222,6 @@ extension ProfileEditView {
                     .frame(width: 100, alignment: .leading)
                 
                 CustomInputField(placeholderText: "Gender", text: $gender)
-                    .keyboardType(.default)
             }
             
         }
@@ -258,5 +235,32 @@ extension Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy" // Specify the format you want
         return dateFormatter.string(from: self) // Convert the date to a string
+    }
+}
+
+extension String {
+    
+    public var formattedPhoneNumber: String {
+        // Remove any non-numeric characters
+        let digits = self.filter { $0.isNumber }
+        
+        // Format based on length
+        switch digits.count {
+        case 0...3:
+            return digits
+        case 4...6:
+            return "(\(digits.prefix(3))) \(digits.suffix(digits.count - 3))"
+        case 7...10:
+            let areaCode = digits.prefix(3)
+            let prefix = digits[digits.index(digits.startIndex, offsetBy: 3)..<digits.index(digits.startIndex, offsetBy: 6)]
+            let lineNumber = digits.suffix(digits.count - 6)
+            return "(\(areaCode)) \(prefix)-\(lineNumber)"
+        default:
+            let areaCode = digits.prefix(3)
+            let prefix = digits[digits.index(digits.startIndex, offsetBy: 3)..<digits.index(digits.startIndex, offsetBy: 6)]
+            let lineNumber = digits[digits.index(digits.startIndex, offsetBy: 6)..<digits.index(digits.startIndex, offsetBy: 10)]
+            let extras = digits.suffix(digits.count - 10)
+            return "(\(areaCode)) \(prefix)-\(lineNumber) \(extras)"
+        }
     }
 }

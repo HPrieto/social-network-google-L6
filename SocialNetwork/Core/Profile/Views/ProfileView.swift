@@ -11,6 +11,7 @@ import Kingfisher
 struct ProfileView: View {
     @State private var selectedFiler: PostFilterViewModel = .posts
     @State private var showSettings: Bool = false
+    @State private var path = NavigationPath()
     @ObservedObject var viewModel: ProfileViewModel
     @Environment(\.presentationMode) var mode
     @Namespace var animation
@@ -181,10 +182,10 @@ extension ProfileView {
     var userInfoDetails: some View {
         
         VStack(alignment: .leading, spacing: 8) {
-            Text("\(viewModel.user.fullname)")
+            Text(viewModel.user.fullname)
                 .fontWeight(.semibold)
             
-            Text("Test description \nTest description line 2.")
+            Text(viewModel.user.profileDescription ?? "")
                 .font(.system(size: 16, weight: .regular))
         }
         .padding(.horizontal)

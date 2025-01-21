@@ -14,6 +14,7 @@ struct User: Identifiable, Decodable {
     let fullname: String
     let birthday: Date
     let email: String
+    var uid: String?
     var profileImageUrl: String?
     var profileDescription: String?
     var phoneNumber: String?

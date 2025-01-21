@@ -14,6 +14,7 @@ struct CustomInputField: View {
     var textContentType: UITextContentType?
     var textInputAutoCapital: TextInputAutocapitalization?
     var isSecureField: Bool? = false
+    var isNavigationField: Bool? = false
     @Binding var text: String
     
     var body: some View {
@@ -36,13 +37,27 @@ struct CustomInputField: View {
                     .onChange(of: text) { newValue in 
                         text = setTextCase(text: text)
                     }
+                    .disabled(isNavigationField ?? false)
+                    .multilineTextAlignment(.leading)
+                }
+                
+                Spacer()
+                
+                if isNavigationField == true {
+                    Image(systemName: "chevron.right")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 10, height: 10) // Adjust size as needed
+                        .clipShape(Circle())
+                        .foregroundColor(.lightGray)
+                        
                 }
             }
             
             Spacer()
             
             Divider()
-                .background(Color(.darkGray))
+                .background(Color(.lightGray))
         }
         .frame(height: 48)
     }

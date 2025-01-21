@@ -57,6 +57,8 @@
 		C7092AE02D39FA9800818E8F /* VideoPostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7092ADF2D39FA9400818E8F /* VideoPostRowView.swift */; };
 		C7092AE22D39FAA600818E8F /* VideoPostRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7092AE12D39FAA100818E8F /* VideoPostRowViewModel.swift */; };
 		C7092AE42D3A1D9900818E8F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7092AE32D3A1D9900818E8F /* GoogleService-Info.plist */; };
+		C751FDCD2D3F0386000B5916 /* ProfileEditBioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C751FDCC2D3F037F000B5916 /* ProfileEditBioView.swift */; };
+		C751FDCF2D3F96CE000B5916 /* BorderedDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C751FDCE2D3F96B5000B5916 /* BorderedDatePicker.swift */; };
 		C778E8102B5D993F00A6A3A3 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C778E80F2B5D993F00A6A3A3 /* ForgotPasswordView.swift */; };
 		C79D1DED2B68C3F3001E85BA /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79D1DEC2B68C3F3001E85BA /* ProfileEditView.swift */; };
 		C7E864842B67764700F2303F /* SignupBirthdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E864832B67764700F2303F /* SignupBirthdayView.swift */; };
@@ -112,6 +114,8 @@
 		C7092ADF2D39FA9400818E8F /* VideoPostRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPostRowView.swift; sourceTree = "<group>"; };
 		C7092AE12D39FAA100818E8F /* VideoPostRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPostRowViewModel.swift; sourceTree = "<group>"; };
 		C7092AE32D3A1D9900818E8F /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C751FDCC2D3F037F000B5916 /* ProfileEditBioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditBioView.swift; sourceTree = "<group>"; };
+		C751FDCE2D3F96B5000B5916 /* BorderedDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedDatePicker.swift; sourceTree = "<group>"; };
 		C778E80F2B5D993F00A6A3A3 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		C79D1DEC2B68C3F3001E85BA /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
 		C7E864832B67764700F2303F /* SignupBirthdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupBirthdayView.swift; sourceTree = "<group>"; };
@@ -242,6 +246,7 @@
 		941CCE4428112FFB00B5F690 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C751FDCE2D3F96B5000B5916 /* BorderedDatePicker.swift */,
 				C7092ADC2D39FA7300818E8F /* VideoPosts */,
 				945C4BF82813EC5100BA3309 /* Authentication */,
 				941CCE6C281277CF00B5F690 /* Users */,
@@ -315,6 +320,7 @@
 		941CCE58281173E300B5F690 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C751FDCC2D3F037F000B5916 /* ProfileEditBioView.swift */,
 				941CCE5A281173FA00B5F690 /* ProfileView.swift */,
 				C79D1DEC2B68C3F3001E85BA /* ProfileEditView.swift */,
 			);
@@ -609,6 +615,7 @@
 			files = (
 				5A1D1F9C296C9914004ABBDE /* SearchBar.swift in Sources */,
 				945A85B1281576F800FFF6EA /* UserService.swift in Sources */,
+				C751FDCD2D3F0386000B5916 /* ProfileEditBioView.swift in Sources */,
 				C79D1DED2B68C3F3001E85BA /* ProfileEditView.swift in Sources */,
 				941CCE5728116E1000B5F690 /* MessagesView.swift in Sources */,
 				941CCE5B281173FA00B5F690 /* ProfileView.swift in Sources */,
@@ -644,6 +651,7 @@
 				945C4BF32813DC3200BA3309 /* RoundedShape.swift in Sources */,
 				94C3E08328142AD50095C36A /* AuthViewModel.swift in Sources */,
 				941CCE702812E44900B5F690 /* SideMenuOptionRowView.swift in Sources */,
+				C751FDCF2D3F96CE000B5916 /* BorderedDatePicker.swift in Sources */,
 				C7092ADB2D39F93600818E8F /* VideoPostService.swift in Sources */,
 				C7092AD72D39F8C500818E8F /* VideoFeedViewModel.swift in Sources */,
 				949E3C002816810300C8FD38 /* ProfileViewModel.swift in Sources */,
@@ -710,7 +718,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -765,7 +773,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

@@ -62,5 +62,42 @@ class ProfileViewModel: ObservableObject {
             }
         }
     }
+    
+    func updateCurrentUser(fullname: String, profileDescription: String, phoneNumber: String, birthday: Date) {
+        
+        guard self.user.isCurrentUser else { return }
+        let currentUser = self.user
+        
+        guard let uid: String = currentUser.uid else { return }
+        
+        var fieldsToUpdate: [String: Any] = [:]
+        
+        if fullname.count > 0 && fullname != currentUser.fullname {
+            fieldsToUpdate["fullname"] = fullname
+        }
+        
+        if profileDescription.count > 0 && profileDescription != currentUser.profileDescription {
+            fieldsToUpdate["profileDescription"] = profileDescription
+        }
+        
+        if phoneNumber.count > 0 && phoneNumber != currentUser.phoneNumber {
+            fieldsToUpdate["phoneNumber"] = phoneNumber.formattedPhoneNumber
+        }
+        
+        if birthday != Date(), birthday != currentUser.birthday {
+            fieldsToUpdate["birthday"] = birthday
+        }
+        
+        print("DEBUG ProfileViewModel.updateCurrentUser fieldsToUpdate: \(fieldsToUpdate)")
+        
+        userService.updateUser(uid: uid, fieldsToUpdate: fieldsToUpdate) { result in
+            switch result {
+            case .success():
+                print("DEBUG ProfileViewModel.updateUser: Success")
+            case .failure(let error):
+                print("DEBUG ProfileViewModel.updateUser Error: \(error)")
+            }
+        }
+    }
 }
 
